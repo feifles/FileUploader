@@ -13,6 +13,16 @@
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/company/new']">
+                        <span class='glyphicon glyphicon-plus'></span> Add Company
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/datafiletemplate/new']">
+                        <span class='glyphicon glyphicon-plus'></span> Add Data File Template
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/home']">
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>

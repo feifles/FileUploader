@@ -11,12 +11,14 @@ namespace FileUploaderV2.Models.Resources
         public CompanyResource()
         {
             Group = new Collection<GroupResource>();
+            DataFileTemplates = new Collection<DataFileTemplateResource>();
         }
 
         public int Id { get; set; }
 
         public string Name { get; set; }
         public ICollection<GroupResource> Group { get; set; }
+        public ICollection<DataFileTemplateResource> DataFileTemplates { get; set; }
     }
 }
 

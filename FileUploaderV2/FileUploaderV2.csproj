@@ -38,6 +38,8 @@
     <Compile Remove="Migrations\20180328175642_AddFirstModels.Designer.cs" />
     <Compile Remove="Migrations\20180328175729_AddFirstModels.cs" />
     <Compile Remove="Migrations\20180328175729_AddFirstModels.Designer.cs" />
+    <Compile Remove="Migrations\20180329214703_DataFileTemplate.cs" />
+    <Compile Remove="Migrations\20180329214703_DataFileTemplate.Designer.cs" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
