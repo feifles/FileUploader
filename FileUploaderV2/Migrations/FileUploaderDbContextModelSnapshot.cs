@@ -39,17 +39,55 @@ namespace FileUploaderV2.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CompanyId");
+                    b.Property<int>("GroupId");
+
+                    b.Property<DateTime>("LastUpdate");
+
+                    b.Property<string>("LastUpdateUsername")
+                        .HasMaxLength(255);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);
 
+                    b.Property<string>("TableName")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Template")
+                        .HasMaxLength(255);
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("GroupId");
 
                     b.ToTable("DataFileTemplates");
+                });
+
+            modelBuilder.Entity("FileUploaderV2.Models.DBConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DatabaseName")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Server")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DBConfigs");
                 });
 
             modelBuilder.Entity("FileUploaderV2.Models.Group", b =>
@@ -59,6 +97,8 @@ namespace FileUploaderV2.Migrations
 
                     b.Property<int>("CompanyId");
 
+                    b.Property<int>("DBConfigId");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);
@@ -67,22 +107,29 @@ namespace FileUploaderV2.Migrations
 
                     b.HasIndex("CompanyId");
 
+                    b.HasIndex("DBConfigId");
+
                     b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("FileUploaderV2.Models.DataFileTemplate", b =>
                 {
-                    b.HasOne("FileUploaderV2.Models.Company", "Company")
+                    b.HasOne("FileUploaderV2.Models.Group", "Group")
                         .WithMany("DataFileTemplates")
-                        .HasForeignKey("CompanyId")
+                        .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FileUploaderV2.Models.Group", b =>
                 {
                     b.HasOne("FileUploaderV2.Models.Company", "Company")
-                        .WithMany("Group")
+                        .WithMany("Groups")
                         .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FileUploaderV2.Models.DBConfig", "DBConfig")
+                        .WithMany()
+                        .HasForeignKey("DBConfigId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

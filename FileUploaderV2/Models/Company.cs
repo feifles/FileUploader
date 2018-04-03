@@ -11,15 +11,13 @@ namespace FileUploaderV2.Models
     {
         public Company()
         {
-            Group = new Collection<Group>();
-            DataFileTemplates = new Collection<DataFileTemplate>();
+            Groups = new Collection<Group>();
         }
 
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-        public ICollection<Group> Group { get; set; }
-        public ICollection<DataFileTemplate> DataFileTemplates { get; set; }
+        public ICollection<Group> Groups { get; set; }
     }
 }

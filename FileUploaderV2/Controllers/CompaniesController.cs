@@ -28,7 +28,7 @@ namespace FileUploaderV2.Controllers
         [HttpGet("/api/companies")]
         public async Task <IEnumerable<CompanyResource>> GetCompanies()
         {
-            List<Company> companies = await context.Companies.Include(m => m.Group).ToListAsync();
+            List<Company> companies = await context.Companies.Include(m => m.Groups).ToListAsync();
 
             return mapper.Map<List<Company>, List<CompanyResource>>(companies);
         }

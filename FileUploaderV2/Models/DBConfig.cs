@@ -7,25 +7,22 @@ using System.Threading.Tasks;
 
 namespace FileUploaderV2.Models
 {
-    [Table("DataFileTemplates")]
-    public class DataFileTemplate
+    [Table("DBConfigs")]
+    public class DBConfig
     {
         public int Id { get; set; }
+
         [Required]
         [StringLength(255)]
-        public string Name { get; set; }
+        public string Server { get; set; }
         [Required]
         [StringLength(255)]
-        public string TableName { get; set; }
-
+        public string DatabaseName { get; set; }
+        [Required]
         [StringLength(255)]
-        public string Template { get; set; }
-
-        public Group Group { get; set; }
-        public int GroupId { get; set; }
-
+        public string Username { get; set; }
+        [Required]
         [StringLength(255)]
-        public string LastUpdateUsername { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public string Password { get; set; }
     }
 }

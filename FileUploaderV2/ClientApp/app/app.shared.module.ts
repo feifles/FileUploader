@@ -12,6 +12,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { CompanyFormComponent } from './components/company-form/company-form.component';
 import { DataFileTemplateFormComponent } from './components/data-file-template-form/data-file-template-form.component';
 import { CompanyService } from './services/company.service';
+import { FeatureService } from './services/feature.service';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import { CompanyService } from './services/company.service';
         ])
     ],
     providers: [
-        CompanyService
+        CompanyService,
+        FeatureService
     ]
 })
 export class AppModuleShared {

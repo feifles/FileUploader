@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit, Output } from '@angular/core';
 import { CompanyService } from '../../services/company.service';
+import { FeatureService } from '../../services/feature.service';
 
 @Component({
     selector: 'data-file-template-form',
@@ -12,9 +13,11 @@ export class DataFileTemplateFormComponent implements OnInit {
     companies: any[];
     dataFileTemplate: any = {};
     groups: any[];
+    features: any[];
 
     /** data-file-template-form ctor */
-    constructor(private companyService: CompanyService) {
+    constructor(private companyService: CompanyService,
+        private featureService: FeatureService) {
 
     }
 
@@ -23,6 +26,8 @@ export class DataFileTemplateFormComponent implements OnInit {
             .subscribe((companies: any) => {
                 this.companies = companies
             });
+        this.featureService.getFeatures()
+            .subscribe(features => this.features = features);
     }
 
     onCompanyChange() {
