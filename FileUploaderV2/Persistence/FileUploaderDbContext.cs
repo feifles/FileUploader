@@ -10,11 +10,14 @@ namespace FileUploaderV2.Persistence
 {
     public class FileUploaderDbContext : DbContext
     {
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        
         public FileUploaderDbContext(DbContextOptions<FileUploaderDbContext> options) : base(options)
         {
             
-        }
-        public DbSet<Company> Companies { get; set; }
+        } 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
