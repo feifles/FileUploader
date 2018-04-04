@@ -14,6 +14,7 @@ namespace FileUploaderV2.Models
         public Group()
         {
             DataFileTemplates = new Collection<DataFileTemplate>();
+            AppUsers = new Collection<GroupAppUser>();
         }
 
         public int Id { get; set; }
@@ -27,7 +28,13 @@ namespace FileUploaderV2.Models
         public DBConfig DBConfig { get; set; }
         public int DBConfigId { get; set; }
 
+        public bool isActive { get; set; }
+
+        public DateTime LastUpdate { get; set; }
+
         public ICollection<DataFileTemplate> DataFileTemplates { get; set; }
-        
+
+        public ICollection<GroupAppUser> AppUsers { get; set; }
+
     }
 }

@@ -15,5 +15,11 @@ namespace FileUploaderV2.Persistence
             
         }
         public DbSet<Company> Companies { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GroupAppUser>().HasKey(gau =>
+                new { gau.GroupId, gau.AppUserId });
+        }
     }
 }
