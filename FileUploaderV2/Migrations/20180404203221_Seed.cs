@@ -29,12 +29,42 @@ namespace FileUploaderV2.Migrations
             migrationBuilder.Sql("INSERT INTO Groups (Name, CompanyId, DBConfigId) VALUES ('Company3-GroupB', (SELECT ID FROM Companies WHERE Name='Company3' ), (SELECT ID FROM DBConfigs WHERE Server='Server3'))");
             migrationBuilder.Sql("INSERT INTO Groups (Name, CompanyId, DBConfigId) VALUES ('Company3-GroupC', (SELECT ID FROM Companies WHERE Name='Company3' ), (SELECT ID FROM DBConfigs WHERE Server='Server3'))");
 
-            
+            //Add to AppUsers
+            migrationBuilder.Sql("INSERT INTO AppUsers (Name) VALUES ('User1')");
+            migrationBuilder.Sql("INSERT INTO AppUsers (Name) VALUES ('User2')");
+            migrationBuilder.Sql("INSERT INTO AppUsers (Name) VALUES ('User3')");
+            migrationBuilder.Sql("INSERT INTO AppUsers (Name) VALUES ('User4')");
+            migrationBuilder.Sql("INSERT INTO AppUsers (Name) VALUES ('User5')");
+            migrationBuilder.Sql("INSERT INTO AppUsers (Name) VALUES ('User6')");
+
+            //Add to GroupAppUsers
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company1-GroupA' ), (SELECT ID FROM AppUsers WHERE Name='User1' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company1-GroupA' ), (SELECT ID FROM AppUsers WHERE Name='User2' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company1-GroupB' ), (SELECT ID FROM AppUsers WHERE Name='User1' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company1-GroupB' ), (SELECT ID FROM AppUsers WHERE Name='User2' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company1-GroupC' ), (SELECT ID FROM AppUsers WHERE Name='User1' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company1-GroupC' ), (SELECT ID FROM AppUsers WHERE Name='User2' ))");
+                                                                                                                                                                                             
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company2-GroupA' ), (SELECT ID FROM AppUsers WHERE Name='User3' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company2-GroupA' ), (SELECT ID FROM AppUsers WHERE Name='User4' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company2-GroupB' ), (SELECT ID FROM AppUsers WHERE Name='User3' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company2-GroupB' ), (SELECT ID FROM AppUsers WHERE Name='User4' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company2-GroupC' ), (SELECT ID FROM AppUsers WHERE Name='User3' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company2-GroupC' ), (SELECT ID FROM AppUsers WHERE Name='User4' ))");
+                                                                                                                                                                                             
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company3-GroupA' ), (SELECT ID FROM AppUsers WHERE Name='User5' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company3-GroupA' ), (SELECT ID FROM AppUsers WHERE Name='User6' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company3-GroupB' ), (SELECT ID FROM AppUsers WHERE Name='User5' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company3-GroupB' ), (SELECT ID FROM AppUsers WHERE Name='User6' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company3-GroupC' ), (SELECT ID FROM AppUsers WHERE Name='User5' ))");
+            migrationBuilder.Sql("INSERT INTO GroupAppUsers (GroupId, AppUserId) VALUES ((SELECT ID FROM Groups WHERE Name='Company3-GroupC' ), (SELECT ID FROM AppUsers WHERE Name='User6' ))");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.Sql("DELETE FROM Companies WHERE Name IN ('Company1', 'Company2', 'Company3')");
+            migrationBuilder.Sql("DELETE FROM DbConfigs WHERE DatabaseName IN ('DB1', 'DB2', 'DB3')");
+            migrationBuilder.Sql("DELETE FROM AppUsers WHERE Name IN ('User1', 'User2', 'User3', 'User4', 'User5', 'User6')");
         }
     }
 }

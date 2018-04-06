@@ -23,9 +23,11 @@ namespace FileUploaderV2.Models
         public string Name { get; set; }
 
         public Company Company { get; set; }
+        [Required]
         public int CompanyId { get; set; }
 
         public DBConfig DBConfig { get; set; }
+        [Required]
         public int DBConfigId { get; set; }
 
         public bool isActive { get; set; }
