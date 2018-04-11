@@ -1,4 +1,4 @@
-﻿using FileUploaderV2.Models;
+﻿using FileUploaderV2.Core.Models;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using FileUploaderV2.Models;
-using FileUploaderV2.Models.Resources;
+using FileUploaderV2.Core.Models;
+using FileUploaderV2.Controllers.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +13,21 @@ namespace FileUploaderV2.Mapping
         public MappingProfile()
         {
             //Domain to API Resource
+            CreateMap<Company, KeyValuePairResource>();
             CreateMap<Company, CompanyResource>();
-            CreateMap<Group, GroupResource>()
-                .ForMember(gr => gr.AppUsers, opt => opt.MapFrom(au => au.AppUsers.Select(gr => gr.AppUserId)));
+            CreateMap<AppUser, KeyValuePairResource>();
             CreateMap<AppUser, AppUserResource>();
+            CreateMap<DBConfig, DbConfigResource>();
+            CreateMap<DBConfig, KeyValuePairResource>();
             CreateMap<DataFileTemplate, DataFileTemplateResource>();
-
+            CreateMap<Group, SaveGroupResource>()
+                .ForMember(gr => gr.AppUsers, opt => opt.MapFrom(au => au.AppUsers.Select(gr => gr.AppUserId)));
+            CreateMap<Group, GroupResource>()
+                .ForMember(gr => gr.Company, opt => opt.MapFrom(g => g.Company))
+                .ForMember(gr => gr.AppUsers, opt => opt.MapFrom(au => au.AppUsers.Select(gr => new KeyValuePairResource { Id = gr.AppUser.Id, Name = gr.AppUser.Name })));
 
             //API Resource to Domain
-            CreateMap<GroupResource, Group>()
+            CreateMap<SaveGroupResource, Group>()
                 .ForMember(g => g.Id, opt => opt.Ignore())
                 .ForMember(g => g.AppUsers, opt => opt.Ignore())
                 .AfterMap((gr, g) => {

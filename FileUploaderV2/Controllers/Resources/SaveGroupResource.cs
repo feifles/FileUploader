@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FileUploaderV2.Models.Resources
+namespace FileUploaderV2.Controllers.Resources
 {
-    public class GroupResource
+    public class SaveGroupResource
     {
-        public GroupResource()
+        public SaveGroupResource()
         {
             DataFileTemplates = new Collection<DataFileTemplateResource>();
             AppUsers = new Collection<int>();

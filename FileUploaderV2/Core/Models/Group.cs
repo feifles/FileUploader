@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FileUploaderV2.Models
+namespace FileUploaderV2.Core.Models
 {
     [Table("Groups")]
     public class Group
