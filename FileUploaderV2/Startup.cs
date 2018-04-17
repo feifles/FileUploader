@@ -32,6 +32,7 @@ namespace FileUploaderV2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();
 

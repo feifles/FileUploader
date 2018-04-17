@@ -14,7 +14,6 @@ namespace FileUploaderV2.Mapping
         {
             //Domain to API Resource
             CreateMap<Company, KeyValuePairResource>();
-            CreateMap<Company, CompanyResource>();
             CreateMap<AppUser, KeyValuePairResource>();
             CreateMap<AppUser, AppUserResource>();
             CreateMap<DBConfig, DbConfigResource>();
@@ -25,6 +24,8 @@ namespace FileUploaderV2.Mapping
             CreateMap<Group, GroupResource>()
                 .ForMember(gr => gr.Company, opt => opt.MapFrom(g => g.Company))
                 .ForMember(gr => gr.AppUsers, opt => opt.MapFrom(au => au.AppUsers.Select(gr => new KeyValuePairResource { Id = gr.AppUser.Id, Name = gr.AppUser.Name })));
+            CreateMap<Company, CompanyResource>()
+                .ForMember(cr => cr.Group, opt => opt.MapFrom(g => g.Groups));
 
             //API Resource to Domain
             CreateMap<SaveGroupResource, Group>()

@@ -10,14 +10,14 @@ namespace FileUploaderV2.Controllers.Resources
     {
         public CompanyResource()
         {
-            Group = new Collection<SaveGroupResource>();
+            Group = new Collection<GroupResource>();
             DataFileTemplates = new Collection<DataFileTemplateResource>();
         }
 
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public ICollection<SaveGroupResource> Group { get; set; }
+        public ICollection<GroupResource> Group { get; set; }
         public ICollection<DataFileTemplateResource> DataFileTemplates { get; set; }
     }
 }

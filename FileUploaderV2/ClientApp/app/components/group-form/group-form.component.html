@@ -1,0 +1,27 @@
+﻿<h1>Novo Grupo</h1>
+<p>
+    {{ group | json}}
+</p>
+<form>
+    <div class="form-group">
+        <label for="company">Make</label>
+        <select id="company" class="form-control" (change)="onCompanyChange()" [(ngModel)]="group.companyId" name="companyId">
+            <option value=""></option>
+            <option *ngFor="let c of companies" value="{{ c.id }}">{{ c.name }}</option>
+        </select>
+    </div>
+    <p>Este grupo esta ativo?</p>
+    <label for="activated" class="radio-inline">
+        <input type="radio" name="isActive" id="activated" value="true" [(ngModel)]="group.isActive"> Sim
+    </label>
+    <label for="notActivated" class="radio-inline">
+        <input type="radio" name="isActive" id="notActivated" value="false" [(ngModel)]="group.isActive"> Não
+    </label>
+    <h2>Usuários</h2>
+    <div *ngFor="let au of appUsers" class="checkbox">
+        <label for="user{{ au.id }}">
+            <input type="checkbox" id="feature{{ au.id }}"> {{ au.name }}
+        </label>
+    </div>
+    <button class="btn btn-primary">Salvar</button>
+</form>

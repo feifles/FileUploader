@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { CompanyFormComponent } from './components/company-form/company-form.component';
+import { GroupFormComponent } from './components/group-form/group-form.component';
 import { DataFileTemplateFormComponent } from './components/data-file-template-form/data-file-template-form.component';
 import { CompanyService } from './services/company.service';
 import { FeatureService } from './services/feature.service';
@@ -22,7 +23,8 @@ import { FeatureService } from './services/feature.service';
         FetchDataComponent,
         HomeComponent,
         CompanyFormComponent,
-        DataFileTemplateFormComponent
+        DataFileTemplateFormComponent,
+        GroupFormComponent
     ],
     imports: [
         CommonModule,
