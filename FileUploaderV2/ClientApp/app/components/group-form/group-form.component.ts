@@ -10,15 +10,56 @@ import { GroupService } from '../../services/group.service';
 export class GroupFormComponent implements OnInit{
     /** group-form ctor */
 
-    makes: any[];
-    models: any[];
-    appUsers: any[];
-    vehicle: any = {};
+    name: string;
+    companies: any[];
+    dbConfigs: any[];
+    users: any[];
+    group: any = {
+        name: "",
+        dbConfigId: 0,
+        users: []
+    };
 
     constructor(private groupService: GroupService) { }
 
     ngOnInit() {
-        this.groupService.getAppUsers().subscribe(appUsers =>
-            this.appUsers = appUsers);
+        this.groupService.getCompanies().subscribe(companies =>
+            this.companies = companies);
+    }
+
+    onCompanyChange() {
+
+        this.group.users = [];
+        this.group.dbConfigId = 0;
+
+        if (this.group.companyId === '') {
+
+            delete this.users;
+            delete this.dbConfigs;
+        }
+        else {
+            this.groupService
+                .getAppUsers(this.group.companyId)
+                .subscribe(appUsers => this.users = appUsers);
+
+            this.groupService
+                .getDbConfigs(this.group.companyId)
+                .subscribe(dbConfigs => this.dbConfigs = dbConfigs);
+        }
+    }
+
+    onUserToggle(userId: number, $event: { target: { checked: any; }; }) {
+
+        if ($event.target.checked)
+            this.group.users.push(userId);
+        else {
+            var index = this.group.users.indexOf(userId);
+            this.group.users.splice(index, 1);
+        }
+    }
+
+    submit() {
+        this.groupService.create(this.group)
+            .subscribe(x => console.log(x));
     }
 }

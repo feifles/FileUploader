@@ -33,6 +33,8 @@ namespace FileUploaderV2
         {
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IAppUserRepository, AppUserRepository>();
+            services.AddScoped<IDBConfigRepository, DBConfigRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper();
 

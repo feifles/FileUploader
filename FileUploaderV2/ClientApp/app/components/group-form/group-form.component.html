@@ -2,14 +2,25 @@
 <p>
     {{ group | json}}
 </p>
-<form>
+<form (ngSubmit)="submit()">
     <div class="form-group">
-        <label for="company">Make</label>
+        <label for="name">Nome</label>
+        <input id="name" type="text" class="form-control" [(ngModel)]="group.name" name="name" />
+    </div>
+    <div class="form-group">
+        <label for="company">Empresa</label>
         <select id="company" class="form-control" (change)="onCompanyChange()" [(ngModel)]="group.companyId" name="companyId">
             <option value=""></option>
             <option *ngFor="let c of companies" value="{{ c.id }}">{{ c.name }}</option>
         </select>
     </div>
+    <div class="form-group">
+        <label for="dbConfigId">Configuração Banco de Dados</label>
+        <select id="dbConfig" class="form-control" [(ngModel)]="group.dbConfigId" name="dbConfigId">
+            <option *ngFor="let c of dbConfigs" value="{{ c.id }}">{{ c.name }}</option>
+        </select>
+    </div>
+
     <p>Este grupo esta ativo?</p>
     <label for="activated" class="radio-inline">
         <input type="radio" name="isActive" id="activated" value="true" [(ngModel)]="group.isActive"> Sim
@@ -18,10 +29,12 @@
         <input type="radio" name="isActive" id="notActivated" value="false" [(ngModel)]="group.isActive"> Não
     </label>
     <h2>Usuários</h2>
-    <div *ngFor="let au of appUsers" class="checkbox">
-        <label for="user{{ au.id }}">
-            <input type="checkbox" id="feature{{ au.id }}"> {{ au.name }}
-        </label>
+    <div class="form-group">
+        <div *ngFor="let au of users" class="checkbox form-control">
+            <label for="user{{ au.id }}">
+                <input type="checkbox" id="user{{ au.id }}" (change)="onUserToggle(au.id, $event)"> {{ au.name }}
+            </label>
+        </div>
     </div>
     <button class="btn btn-primary">Salvar</button>
 </form>

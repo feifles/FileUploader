@@ -21,6 +21,7 @@ namespace FileUploaderV2.Persistence
         {
             return await context.Companies
                 .Include(g => g.Groups)
+                    .ThenInclude(d => d.DBConfig)
                 .ToListAsync();
         }
 

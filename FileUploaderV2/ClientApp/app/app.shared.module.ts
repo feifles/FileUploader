@@ -14,6 +14,7 @@ import { GroupFormComponent } from './components/group-form/group-form.component
 import { DataFileTemplateFormComponent } from './components/data-file-template-form/data-file-template-form.component';
 import { CompanyService } from './services/company.service';
 import { FeatureService } from './services/feature.service';
+import { GroupService } from './services/group.service';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import { FeatureService } from './services/feature.service';
             { path: 'home', component: HomeComponent },
             { path: 'company/new', component: CompanyFormComponent },
             { path: 'datafiletemplate/new', component: DataFileTemplateFormComponent },
+            { path: 'group/new', component: GroupFormComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
@@ -42,7 +44,8 @@ import { FeatureService } from './services/feature.service';
     ],
     providers: [
         CompanyService,
-        FeatureService
+        FeatureService,
+        GroupService
     ]
 })
 export class AppModuleShared {
