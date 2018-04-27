@@ -30,6 +30,7 @@ namespace FileUploaderV2.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateGroup([FromBody] SaveGroupResource groupResource)
         {
+            throw new Exception();
             //Check input based on DataAnnotations
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

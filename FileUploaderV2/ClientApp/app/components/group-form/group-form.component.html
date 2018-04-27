@@ -2,23 +2,26 @@
 <p>
     {{ group | json}}
 </p>
-<form (ngSubmit)="submit()">
+<form #f="ngForm" (ngSubmit)="submit()" novalidate>
     <div class="form-group">
         <label for="name">Nome</label>
-        <input id="name" type="text" class="form-control" [(ngModel)]="group.name" name="name" />
+        <input id="name" type="text" class="form-control" [(ngModel)]="group.name" name="name" required #name="ngModel" />
+        <div class="alert alert-danger" *ngIf="name.touched && !name.valid">Por favor de um nome a este grupo.</div>
     </div>
     <div class="form-group">
         <label for="company">Empresa</label>
-        <select id="company" class="form-control" (change)="onCompanyChange()" [(ngModel)]="group.companyId" name="companyId">
+        <select id="company" class="form-control" (change)="onCompanyChange()" [(ngModel)]="group.companyId" name="companyId" required #company="ngModel">
             <option value=""></option>
             <option *ngFor="let c of companies" value="{{ c.id }}">{{ c.name }}</option>
         </select>
+        <div class="alert alert-danger" *ngIf="company.touched && !company.valid">Por favor selecione a empresa.</div>
     </div>
     <div class="form-group">
         <label for="dbConfigId">Configuração Banco de Dados</label>
-        <select id="dbConfig" class="form-control" [(ngModel)]="group.dbConfigId" name="dbConfigId">
+        <select id="dbConfig" class="form-control" [(ngModel)]="group.dbConfigId" name="dbConfigId" required #dbconfig="ngModel">
             <option *ngFor="let c of dbConfigs" value="{{ c.id }}">{{ c.name }}</option>
         </select>
+        <div class="alert alert-danger" *ngIf="dbconfig.touched && !dbconfig.valid">Por favor selecione a configuração do banco de dados.</div> 
     </div>
 
     <p>Este grupo esta ativo?</p>
@@ -36,5 +39,5 @@
             </label>
         </div>
     </div>
-    <button class="btn btn-primary">Salvar</button>
+    <button class="btn btn-primary" >Salvar</button>
 </form>

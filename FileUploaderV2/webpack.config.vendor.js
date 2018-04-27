@@ -20,6 +20,8 @@ const nonTreeShakableModules = [
     'es6-promise',
     'es6-shim',
     'event-source-polyfill',
+    'ng2-toasty',
+    'ng2-toasty/bundles/style-bootstrap.css',
     'jquery',
 ];
 const allModules = treeShakableModules.concat(nonTreeShakableModules);
@@ -73,7 +75,7 @@ module.exports = (env) => {
 
     const serverBundleConfig = merge(sharedConfig, {
         target: 'node',
-        resolve: { mainFields: ['main'] },
+        resolve: { mainFields: ['browser', 'main'] },
         entry: { vendor: allModules.concat(['aspnet-prerendering']) },
         output: {
             path: path.join(__dirname, 'ClientApp', 'dist'),

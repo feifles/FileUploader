@@ -15,6 +15,7 @@ import { DataFileTemplateFormComponent } from './components/data-file-template-f
 import { CompanyService } from './services/company.service';
 import { FeatureService } from './services/feature.service';
 import { GroupService } from './services/group.service';
+import { ToastyModule } from 'ng2-toasty';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import { GroupService } from './services/group.service';
     imports: [
         CommonModule,
         HttpModule,
+        ToastyModule.forRoot(),
         FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },

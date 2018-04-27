@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../../services/group.service';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
     selector: 'group-form',
@@ -20,7 +21,7 @@ export class GroupFormComponent implements OnInit{
         users: []
     };
 
-    constructor(private groupService: GroupService) { }
+    constructor(private groupService: GroupService, private toastyService: ToastyService) { }
 
     ngOnInit() {
         this.groupService.getCompanies().subscribe(companies =>
@@ -60,6 +61,20 @@ export class GroupFormComponent implements OnInit{
 
     submit() {
         this.groupService.create(this.group)
-            .subscribe(x => console.log(x));
+            .subscribe(x =>
+                console.log(x),
+                err => {
+                    //if (err.status == 400) {
+
+                    //}
+                    this.toastyService.error({
+                        title: 'Erro',
+                        msg: 'Um erro inesperado ocorreu.',
+                        theme: 'bootstrap',
+                        showClose: true,
+                        timeout: 5000
+                    })
+            }
+        );
     }
 }
