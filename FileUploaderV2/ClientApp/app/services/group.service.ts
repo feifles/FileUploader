@@ -6,6 +6,11 @@ import 'rxjs/add/operator/map';
 export class GroupService {
     constructor(private http: Http) { }
 
+    getGroup(id: number) {
+        return this.http.get('/api/groups/' + id)
+            .map(res => res.json());
+    }
+
     getAppUsers(id: number) {
         return this.http.get('/api/users/company/' + id)
             .map(res => res.json());

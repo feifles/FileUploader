@@ -3195,6 +3195,11 @@
       "resolved": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.0.tgz",
       "dev": true
     },
+    "raven-js": {
+      "version": "3.24.2",
+      "from": "raven-js@latest",
+      "resolved": "https://registry.npmjs.org/raven-js/-/raven-js-3.24.2.tgz"
+    },
     "raw-body": {
       "version": "2.2.0",
       "from": "raw-body@>=2.2.0 <2.3.0",

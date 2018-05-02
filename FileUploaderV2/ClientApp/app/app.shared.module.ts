@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import * as Raven from 'raven-js';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -16,6 +17,11 @@ import { CompanyService } from './services/company.service';
 import { FeatureService } from './services/feature.service';
 import { GroupService } from './services/group.service';
 import { ToastyModule } from 'ng2-toasty';
+import { AppErrorHandler } from './app.error-handler';
+
+Raven
+    .config('https://77e4082301d64855806a4f6e64b8d6c6@sentry.io/1199957')
+    .install();
 
 @NgModule({
     declarations: [
@@ -39,12 +45,14 @@ import { ToastyModule } from 'ng2-toasty';
             { path: 'company/new', component: CompanyFormComponent },
             { path: 'datafiletemplate/new', component: DataFileTemplateFormComponent },
             { path: 'group/new', component: GroupFormComponent },
+            { path: 'group/:id', component: GroupFormComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
     providers: [
+        { provide: ErrorHandler, useClass: AppErrorHandler },
         CompanyService,
         FeatureService,
         GroupService

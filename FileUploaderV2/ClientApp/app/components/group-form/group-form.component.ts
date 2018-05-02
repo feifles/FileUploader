@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { GroupService } from '../../services/group.service';
 import { ToastyService } from 'ng2-toasty';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'group-form',
@@ -21,9 +22,29 @@ export class GroupFormComponent implements OnInit{
         users: []
     };
 
-    constructor(private groupService: GroupService, private toastyService: ToastyService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private groupService: GroupService,
+        private toastyService: ToastyService) {
+
+        route.params.subscribe(p => {
+            this.group.id = +p['id'];
+        });
+    }
 
     ngOnInit() {
+
+        this.groupService.getGroup(this.group.id)
+            .subscribe(g => {
+                this.group = g
+            },
+            err => {
+                if (err.status == 404)
+                    this.router.navigate(['/not-found']);
+            }
+        );
+
         this.groupService.getCompanies().subscribe(companies =>
             this.companies = companies);
     }
@@ -62,19 +83,6 @@ export class GroupFormComponent implements OnInit{
     submit() {
         this.groupService.create(this.group)
             .subscribe(x =>
-                console.log(x),
-                err => {
-                    //if (err.status == 400) {
-
-                    //}
-                    this.toastyService.error({
-                        title: 'Erro',
-                        msg: 'Um erro inesperado ocorreu.',
-                        theme: 'bootstrap',
-                        showClose: true,
-                        timeout: 5000
-                    })
-            }
-        );
+                console.log(x));
     }
 }
