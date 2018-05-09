@@ -109,5 +109,21 @@ namespace FileUploaderV2.Controllers
 
             return Ok(groupResource);
         }
+
+        [HttpGet("/api/Groups/GetGroups")]
+        public async Task<IActionResult> GetGroups(int id)
+        {
+            //Check input based on DataAnnotations
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var groups = await repository.GetGroupsFromCompany(id);
+
+            if (groups == null)
+                return NotFound();
+            else
+                return Ok(mapper.Map<IEnumerable<Group>, IEnumerable<GroupResource>>(groups));
+
+        }
     }
 }

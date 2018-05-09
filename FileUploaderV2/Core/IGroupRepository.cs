@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FileUploaderV2.Core.Models;
 
 namespace FileUploaderV2.Core
@@ -9,5 +10,6 @@ namespace FileUploaderV2.Core
         Task<Group> GetGroupWithoutDBConfig(int id);
         void Add(Group group);
         void Remove(Group group);
+        Task<IEnumerable<Group>> GetGroupsFromCompany(int companyId);
     }
 }

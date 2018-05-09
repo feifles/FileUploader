@@ -1,0 +1,25 @@
+﻿<h1>Grupos</h1>
+
+<p>
+    <a [routerLink]="['/groups/new']" class="btn btn-primary">Criar Grupo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Empresa</th>
+            <th>Config. Banco de dados</th>
+            <th>Ativo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let g of groups">
+            <td>{{ g.id }}</td>
+            <td>{{ g.name }}</td>
+            <td>{{ g.company.name }}</td>
+            <td>{{ g.dbConfig.name }}</td>
+            <td>{{ g.isActive }}</td>
+        </tr>
+    </tbody>
+</table>

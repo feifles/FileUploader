@@ -23,8 +23,13 @@
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/group/new']">
+                    <a [routerLink]="['/groups/new']">
                         <span class='glyphicon glyphicon-plus'></span> Add Group
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['/groups']">
+                        <span class='glyphicon glyphicon-plus'></span> Grupos
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">

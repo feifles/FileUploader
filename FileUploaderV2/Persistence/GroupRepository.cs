@@ -30,6 +30,18 @@ namespace FileUploaderV2.Persistence
                         .SingleOrDefaultAsync(g => g.Id == id);
         }
 
+        public async Task<IEnumerable<Group>> GetGroupsFromCompany(int companyId)
+        {
+            return await context.Groups
+                .Where(g => g.CompanyId == companyId)
+                .Include(x => x.Company)
+                .Include(x => x.DataFileTemplates)
+                .Include(x => x.AppUsers)
+                    .ThenInclude(x => x.AppUser)
+                .Include(x => x.DBConfig)
+                .ToListAsync();
+        }
+
         public async Task<Group> GetGroupWithoutDBConfig(int id)
         {
             return await context.Groups

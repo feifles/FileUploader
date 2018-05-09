@@ -18,6 +18,7 @@ import { FeatureService } from './services/feature.service';
 import { GroupService } from './services/group.service';
 import { ToastyModule } from 'ng2-toasty';
 import { AppErrorHandler } from './app.error-handler';
+import { GroupListComponent } from './components/group-list/group-list.component';
 
 Raven
     .config('https://77e4082301d64855806a4f6e64b8d6c6@sentry.io/1199957')
@@ -32,7 +33,8 @@ Raven
         HomeComponent,
         CompanyFormComponent,
         DataFileTemplateFormComponent,
-        GroupFormComponent
+        GroupFormComponent,
+        GroupListComponent
     ],
     imports: [
         CommonModule,
@@ -40,12 +42,13 @@ Raven
         ToastyModule.forRoot(),
         FormsModule,
         RouterModule.forRoot([
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: '', redirectTo: 'groups', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'company/new', component: CompanyFormComponent },
             { path: 'datafiletemplate/new', component: DataFileTemplateFormComponent },
-            { path: 'group/new', component: GroupFormComponent },
-            { path: 'group/:id', component: GroupFormComponent },
+            { path: 'groups/new', component: GroupFormComponent },
+            { path: 'groups/:id', component: GroupFormComponent },
+            { path: 'groups', component: GroupListComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: '**', redirectTo: 'home' }
