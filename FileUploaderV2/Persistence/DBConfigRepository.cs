@@ -17,7 +17,7 @@ namespace FileUploaderV2.Persistence
             this.context = context;
         }
 
-        public async Task<List<DBConfig>> GetCompanyConfigsAsync(int id)
+        public async Task<IEnumerable<DBConfig>> GetCompanyConfigsAsync(int id)
         {
             return await context.Groups
                 .Where(u => u.CompanyId == id)
@@ -25,5 +25,11 @@ namespace FileUploaderV2.Persistence
                 .Distinct()
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<DBConfig>> Get()
+        {
+            return await context.DBConfigs.ToListAsync();
+        }
+
     }
 }

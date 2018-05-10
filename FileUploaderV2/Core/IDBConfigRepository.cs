@@ -8,6 +8,7 @@ namespace FileUploaderV2.Core
 {
     public interface IDBConfigRepository
     {
-        Task<List<DBConfig>> GetCompanyConfigsAsync(int id);
+        Task<IEnumerable<DBConfig>> GetCompanyConfigsAsync(int id);
+        Task<IEnumerable<DBConfig>> Get();
     }
 }

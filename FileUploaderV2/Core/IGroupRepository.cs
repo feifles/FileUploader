@@ -11,5 +11,6 @@ namespace FileUploaderV2.Core
         void Add(Group group);
         void Remove(Group group);
         Task<IEnumerable<Group>> GetGroupsFromCompany(int companyId);
+        Task<IEnumerable<Group>> Get(Filter filter, bool includeRelated = true);
     }
 }

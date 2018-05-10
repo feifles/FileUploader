@@ -29,9 +29,17 @@ namespace FileUploaderV2.Controllers
         [HttpGet("/api/DbConfig/Company/{id}")]
         public async Task<IActionResult> GetUsersFromCompany(int id)
         {
-            List<DBConfig> dbConfigs = await repository.GetCompanyConfigsAsync(id);
+            IEnumerable<DBConfig> dbConfigs = await repository.GetCompanyConfigsAsync(id);
 
-            return Ok(mapper.Map<List<DBConfig>, List<DbConfigResource>>(dbConfigs));
+            return Ok(mapper.Map<IEnumerable<DBConfig>, IEnumerable<DbConfigResource>>(dbConfigs));
+        }
+
+        [HttpGet("/api/DbConfig")]
+        public async Task<IActionResult> Get()
+        {
+            IEnumerable<DBConfig> dbConfigs = await repository.Get();
+
+            return Ok(mapper.Map<IEnumerable<DBConfig>, IEnumerable<DbConfigResource>>(dbConfigs));
         }
     }
 }
