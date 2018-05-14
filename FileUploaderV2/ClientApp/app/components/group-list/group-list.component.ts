@@ -91,7 +91,7 @@ export class GroupListComponent implements OnInit {
 
     sortBy(columnName: string) {
         if (this.query.sortBy === columnName) {
-            this.query.isSortAscending = false;
+            this.query.isSortAscending = !this.query.isSortAscending;
         } else {
             this.query.sortBy = columnName;
             this.query.isSortAscending = true;

@@ -29,7 +29,10 @@
             <th>Nome</th>
             <th (click)="sortBy('company')">
                 Empresa
-                <i class="fa fa-sort-asc"></i>
+                <i 
+                   class="fa"
+                   [class.fa-sort-asc]="query.isSortAscending"
+                   [class.fa-sort-desc]="!query.isSortAscending"></i>
             </th>
             <th (click)="sortBy('dbconfig')">Config. Banco de dados</th>
             <th>Ativo</th>
