@@ -1,9 +1,11 @@
 ﻿using FileUploaderV2.Core;
 using FileUploaderV2.Core.Models;
+using FileUploaderV2.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace FileUploaderV2.Persistence
@@ -30,7 +32,7 @@ namespace FileUploaderV2.Persistence
                         .SingleOrDefaultAsync(g => g.Id == id);
         }
 
-        public async Task<IEnumerable<Group>> Get(Filter filter, bool includeRelated = true)
+        public async Task<IEnumerable<Group>> Get(GroupQuery queryObj, bool includeRelated = true)
         {
             var query = context.Groups
                                 .Include(x => x.Company)
@@ -40,11 +42,19 @@ namespace FileUploaderV2.Persistence
                                 .Include(x => x.DBConfig)
                                 .AsQueryable();
 
-            if (filter.CompanyId.HasValue == true && filter.CompanyId.Value > 0)
-                query = query.Where(g => g.Company.Id == filter.CompanyId.Value);
+            if (queryObj.CompanyId.HasValue == true && queryObj.CompanyId.Value > 0)
+                query = query.Where(g => g.Company.Id == queryObj.CompanyId.Value);
 
-            if (filter.DbConfigId.HasValue == true && filter.DbConfigId.Value > 0)
-                query = query.Where(g => g.DBConfig.Id == filter.DbConfigId.Value);
+            if (queryObj.DbConfigId.HasValue == true && queryObj.DbConfigId.Value > 0)
+                query = query.Where(g => g.DBConfig.Id == queryObj.DbConfigId.Value);
+
+            var columnsMap = new Dictionary<string, Expression<Func<Group, object>>>()
+            {
+                ["company"] = g => g.Company.Name,
+                ["dbconfig"] = g => g.DBConfig.Name
+            };
+
+            query = query.ApplyOrdering(queryObj, columnsMap);
 
             return await query.ToListAsync();
 
@@ -91,5 +101,7 @@ namespace FileUploaderV2.Persistence
         {
             context.Remove(group);
         }
+
+
     }
 }

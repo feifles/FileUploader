@@ -28,7 +28,7 @@ namespace FileUploaderV2.Mapping
                 .ForMember(cr => cr.Group, opt => opt.MapFrom(g => g.Groups));
 
             //API Resource to Domain
-            CreateMap<FilterResource, Filter>();
+            CreateMap<GroupQueryResource, GroupQuery>();
             CreateMap<SaveGroupResource, Group>()
                 .ForMember(g => g.Id, opt => opt.Ignore())
                 .ForMember(g => g.AppUsers, opt => opt.Ignore())

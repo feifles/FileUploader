@@ -17,7 +17,7 @@ export class GroupListComponent implements OnInit {
 
     groups: Group[];
     allGroups: Group[];
-    filter: any = {
+    query: any = {
         companyId: 0,
         dbConfigId: 0
     };
@@ -57,7 +57,7 @@ export class GroupListComponent implements OnInit {
     }
 
     private populateGroups() {
-        this.groupService.getGroups(this.filter)
+        this.groupService.getGroups(this.query)
             //Filter on the server
             .subscribe(groups => this.groups = groups);
 
@@ -85,7 +85,18 @@ export class GroupListComponent implements OnInit {
     }
 
     resetFilter() {
-        this.filter = {};
+        this.query = {};
         this.onFilterChange();
+    }
+
+    sortBy(columnName: string) {
+        if (this.query.sortBy === columnName) {
+            this.query.isSortAscending = false;
+        } else {
+            this.query.sortBy = columnName;
+            this.query.isSortAscending = true;
+        }
+
+        this.populateGroups();
     }
 }

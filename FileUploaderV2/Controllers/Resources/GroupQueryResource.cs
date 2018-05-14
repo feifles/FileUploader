@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace FileUploaderV2.Controllers.Resources
 {
-    public class FilterResource
+    public class GroupQueryResource
     {
         public int? CompanyId { get; set; }
         public int? DbConfigId { get; set; }
+        public string SortBy { get; set; }
+        public bool IsSortAscending { get; set; }
     }
 }

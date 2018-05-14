@@ -7,14 +7,14 @@
 <div class="well">
     <div class="form-group">
         <label for="company">Empresa</label>
-        <select id="company" class="form-control" [(ngModel)]="filter.companyId" (change)="onFilterChange()">
+        <select id="company" class="form-control" [(ngModel)]="query.companyId" (change)="onFilterChange()">
             <option value=""></option>
             <option *ngFor="let c of companies" value="{{ c.id }}">{{ c.name }}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="dbConfig">Configuração Banco de dados</label>
-        <select id="dbConfig" class="form-control" [(ngModel)]="filter.dbConfigId" (change)="onFilterChange()">
+        <select id="dbConfig" class="form-control" [(ngModel)]="query.dbConfigId" (change)="onFilterChange()">
             <option value=""></option>
             <option *ngFor="let d of dbConfigs" value="{{ d.id }}">{{ d.name }}</option>
         </select>
@@ -27,8 +27,11 @@
         <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Empresa</th>
-            <th>Config. Banco de dados</th>
+            <th (click)="sortBy('company')">
+                Empresa
+                <i class="fa fa-sort-asc"></i>
+            </th>
+            <th (click)="sortBy('dbconfig')">Config. Banco de dados</th>
             <th>Ativo</th>
             <th></th>
         </tr>
