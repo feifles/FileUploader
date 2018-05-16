@@ -19,6 +19,7 @@ import { GroupService } from './services/group.service';
 import { ToastyModule } from 'ng2-toasty';
 import { AppErrorHandler } from './app.error-handler';
 import { GroupListComponent } from './components/group-list/group-list.component';
+import { PaginationComponent } from './components/shared/pagination.component';
 
 Raven
     .config('https://77e4082301d64855806a4f6e64b8d6c6@sentry.io/1199957')
@@ -34,7 +35,8 @@ Raven
         CompanyFormComponent,
         DataFileTemplateFormComponent,
         GroupFormComponent,
-        GroupListComponent
+        GroupListComponent,
+        PaginationComponent
     ],
     imports: [
         CommonModule,

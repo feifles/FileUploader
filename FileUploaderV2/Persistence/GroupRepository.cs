@@ -32,8 +32,10 @@ namespace FileUploaderV2.Persistence
                         .SingleOrDefaultAsync(g => g.Id == id);
         }
 
-        public async Task<IEnumerable<Group>> Get(GroupQuery queryObj, bool includeRelated = true)
+        public async Task<QueryResult<Group>> Get(GroupQuery queryObj, bool includeRelated = true)
         {
+            var result = new QueryResult<Group>();
+
             var query = context.Groups
                                 .Include(x => x.Company)
                                 .Include(x => x.DataFileTemplates)
@@ -56,10 +58,13 @@ namespace FileUploaderV2.Persistence
 
             query = query.ApplyOrdering(queryObj, columnsMap);
 
+            result.TotalItems = await query.CountAsync();
+
             query = query.ApplyPaging(queryObj);
 
-            return await query.ToListAsync();
+            result.Items = await query.ToListAsync();
 
+            return result;
 
             //if (!includeRelated)
             //    return await context.Groups.ToListAsync();

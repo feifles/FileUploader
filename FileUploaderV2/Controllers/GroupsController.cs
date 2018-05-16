@@ -127,16 +127,13 @@ namespace FileUploaderV2.Controllers
         }
 
         [HttpGet("/api/Groups/GetAllGroups")]
-        public async Task<IActionResult> GetAllGroups(GroupQueryResource filterResource)
+        public async Task<QueryResultResource<GroupResource>> GetAllGroups(GroupQueryResource filterResource)
         {
             var filter = mapper.Map<GroupQueryResource, GroupQuery>(filterResource);
 
-            var groups = await repository.Get(filter);
+            var queryResult = await repository.Get(filter);
 
-            if (groups == null)
-                return NotFound();
-            else
-                return Ok(mapper.Map<IEnumerable<Group>, IEnumerable<GroupResource>>(groups));
+            return mapper.Map<QueryResult<Group>, QueryResultResource<GroupResource>>(queryResult);
 
         }
     }

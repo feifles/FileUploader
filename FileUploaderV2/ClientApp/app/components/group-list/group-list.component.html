@@ -41,7 +41,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let g of groups">
+        <tr *ngFor="let g of queryResult.items">
             <td>{{ g.id }}</td>
             <td>{{ g.name }}</td>
             <td>{{ g.company.name }}</td>
@@ -53,3 +53,4 @@
         </tr>
     </tbody>
 </table>
+<pagination [total-items]="queryResult.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>

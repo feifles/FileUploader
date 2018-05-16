@@ -15,11 +15,13 @@ import { Observable } from 'rxjs/Observable';
 /** group-list component*/
 export class GroupListComponent implements OnInit {
 
-    groups: Group[];
-    allGroups: Group[];
+    private readonly PAGE_SIZE = 10;
+
+    queryResult: any;
     query: any = {
         companyId: 0,
-        dbConfigId: 0
+        dbConfigId: 0,
+        pageSize: this.PAGE_SIZE
     };
     companies: KeyValuePair[];
     dbConfigs: KeyValuePair[];
@@ -39,8 +41,7 @@ export class GroupListComponent implements OnInit {
             private groupService: GroupService,
             private toastyService: ToastyService) {
 
-        this.groups = [];
-        this.allGroups = [];
+        this.queryResult = {};
         this.companies = [];
         this.dbConfigs = [];
     }
@@ -68,13 +69,15 @@ export class GroupListComponent implements OnInit {
     private populateGroups() {
         this.groupService.getGroups(this.query)
             //Filter on the server
-            .subscribe(groups => this.groups = groups);
+            .subscribe(result => this.queryResult = result);
 
         //Filter on the client
         //.subscribe(groups => this.groups = this.allGroups = groups);
     }
 
     onFilterChange() {
+
+        this.query.page = 1;
 
         this.populateGroups();
 
@@ -94,8 +97,11 @@ export class GroupListComponent implements OnInit {
     }
 
     resetFilter() {
-        this.query = {};
-        this.onFilterChange();
+        this.query = {
+            page: 1,
+            pageSize: this.PAGE_SIZE
+        };
+        this.populateGroups();
     }
 
     sortBy(columnName: string) {
@@ -106,6 +112,10 @@ export class GroupListComponent implements OnInit {
             this.query.isSortAscending = true;
         }
 
+        this.populateGroups();
+    }
+    onPageChange(page: any) {
+        this.query.page = page;
         this.populateGroups();
     }
 }
