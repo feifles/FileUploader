@@ -25,18 +25,19 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Nome</th>
-            <th (click)="sortBy('company')">
-                Empresa
-                <i 
-                   class="fa"
-                   [class.fa-sort-asc]="query.isSortAscending"
-                   [class.fa-sort-desc]="!query.isSortAscending"></i>
+            <th *ngFor="let c of columns" >
+                <div  *ngIf="c.isSortable" (click)="sortBy(c.key)" >
+                    {{ c.title }}
+                    <i *ngIf="query.sortBy === c.key"
+                       class="fa"
+                       [class.fa-sort-asc]="query.isSortAscending"
+                       [class.fa-sort-desc]="!query.isSortAscending">
+                    </i>
+                </div>
+                <div *ngIf="!c.isSortable">
+                    {{ c.title }}
+                </div>
             </th>
-            <th (click)="sortBy('dbconfig')">Config. Banco de dados</th>
-            <th>Ativo</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -47,7 +48,7 @@
             <td>{{ g.dbConfig.name }}</td>
             <td>{{ g.isActive }}</td>
             <td>
-                <a [routerLink]="['/groups/', g.id]">View</a>
+                <a [routerLink]="['/groups/', g.id]">Ver</a>
             </td>
         </tr>
     </tbody>

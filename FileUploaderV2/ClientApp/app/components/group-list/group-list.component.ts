@@ -23,6 +23,15 @@ export class GroupListComponent implements OnInit {
     };
     companies: KeyValuePair[];
     dbConfigs: KeyValuePair[];
+    columns = [
+        { title: 'Id' },
+        { title: 'Nome', key: 'name', isSortable: true },
+        { title: 'Empresa', key: 'company', isSortable: true },
+        { title: 'DBConfig', key: 'dbconfig', isSortable: true },
+        { title: 'Ativo?', key: 'isActive', isSortable: false },
+        { title: '', isSortable: false }
+
+    ];
 
     /** group-list ctor */
     constructor(private route: ActivatedRoute,

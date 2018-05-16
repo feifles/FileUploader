@@ -9,5 +9,7 @@ namespace FileUploaderV2.Extensions
     {
         string SortBy { get; set; }
         bool IsSortAscending { get; set; }
+        int Page { get; set; }
+        Byte PageSize { get; set; }
     }
 }

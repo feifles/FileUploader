@@ -12,6 +12,7 @@ namespace FileUploaderV2.Core.Models
         public int? DbConfigId { get; set; }
         public string SortBy { get; set; }
         public bool IsSortAscending { get; set; }
-
+        public int Page { get; set; }
+        public Byte PageSize { get; set; }
     }
 }
