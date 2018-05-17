@@ -1,0 +1,36 @@
+﻿<h1>Grupo</h1>
+<div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#info" aria-controls="basic" role="tab" data-toggle="tab">Grupo</a></li>
+        <li role="presentation"><a href="#photos" aria-controls="photos" role="tab" data-toggle="tab">Fotos</a></li>
+    </ul>
+
+    <div class="tab-content" *ngIf="group">
+        <div role="tabpanel" class="tab-pane active" id="info">
+            <h2>Info</h2>
+            <ul>
+                <li>Nome: {{ group.name }}</li>
+                <li>Empresa: {{ group.company.name }}</li>
+                <li>DBConfig: {{ group.dbConfig.name }}</li>
+                <li>Ativo?: {{ group.isActive ? 'Sim': 'Não' }}</li>
+            </ul>
+            <h2>Usuários</h2>
+            <ul>
+                <li *ngFor="let au of group.appUsers">
+                    {{ au.name }}
+                </li>
+            </ul>
+            <br />
+            <p>
+                <a class="btn btn-primary" [routerLink]="['/groups/edit/', group.id]">Editar</a>
+                <button class="btn btn-danger" (click)="delete()">Deletar</button>
+                <a class="btn btn-default" [routerLink]="['/groups']">Ver todos</a>
+            </p>
+        </div>
+        <!-- Photos tab -->
+        <div role="tabpanel" class="tab-pane" id="photos">
+            <h2>Photos</h2>
+        </div>
+    </div>
+</div>

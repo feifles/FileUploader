@@ -44,7 +44,7 @@ export class GroupFormComponent implements OnInit{
         this.users = [];
 
         route.params.subscribe(p => {
-            this.group.id = +p['id'];
+            this.group.id = +p['id'] || 0;
         });
     }
 
@@ -123,32 +123,18 @@ export class GroupFormComponent implements OnInit{
     }
 
     submit() {
-        if (this.group.id) {
-            this.groupService.update(this.group)
-                .subscribe(x => {
-                    this.toastyService.success({
-                        title: 'Sucesso',
-                        msg: 'O grupo foi atualizado com sucesso.',
-                        theme: 'bootstrap',
-                        showClose: true,
-                        timeout: 5000
-                    });
-                });
-        }
-        else {
-            this.groupService.create(this.group)
-                .subscribe(x =>
-                    console.log(x));
-        }
+        var result$ = (this.group.id) ? this.groupService.update(this.group) : this.groupService.create(this.group);
 
-    }
+        result$.subscribe(group => {
+            this.toastyService.success({
+                title: 'Sucesso',
+                msg: 'O grupo foi salvo com sucesso.',
+                theme: 'bootstrap',
+                showClose: true,
+                timeout: 5000
+            });
 
-    delete() {
-        if (confirm('Tem certeza que deseja remover este grupo?')) {
-            this.groupService.delete(this.group.id)
-                .subscribe(x => {
-                    this.router.navigate(['/home']);
-                });
-        }
+            this.router.navigate(['/groups/', group.id]);
+        });
     }
 }

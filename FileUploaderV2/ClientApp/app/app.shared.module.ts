@@ -20,6 +20,7 @@ import { ToastyModule } from 'ng2-toasty';
 import { AppErrorHandler } from './app.error-handler';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { PaginationComponent } from './components/shared/pagination.component';
+import { GroupViewComponent } from './components/group-view/group-view.component';
 
 Raven
     .config('https://77e4082301d64855806a4f6e64b8d6c6@sentry.io/1199957')
@@ -36,6 +37,7 @@ Raven
         DataFileTemplateFormComponent,
         GroupFormComponent,
         GroupListComponent,
+        GroupViewComponent,
         PaginationComponent
     ],
     imports: [
@@ -49,7 +51,8 @@ Raven
             { path: 'company/new', component: CompanyFormComponent },
             { path: 'datafiletemplate/new', component: DataFileTemplateFormComponent },
             { path: 'groups/new', component: GroupFormComponent },
-            { path: 'groups/:id', component: GroupFormComponent },
+            { path: 'groups/edit/:id', component: GroupFormComponent },
+            { path: 'groups/:id', component: GroupViewComponent },
             { path: 'groups', component: GroupListComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
