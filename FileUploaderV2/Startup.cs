@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using FileUploaderV2.Core;
+using FileUploaderV2.Core.Models;
 using FileUploaderV2.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +32,7 @@ namespace FileUploaderV2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<DataFileSettings>(Configuration.GetSection("DataFileSettings"));
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
