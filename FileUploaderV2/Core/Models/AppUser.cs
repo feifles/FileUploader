@@ -13,7 +13,8 @@ namespace FileUploaderV2.Core.Models
     {
         public AppUser()
         {
-            Groups = new Collection<GroupAppUser>(); ;
+            Groups = new Collection<GroupAppUser>();
+            DataFiles = new Collection<DataFile>();
         }
 
         public int Id { get; set; }
@@ -22,6 +23,7 @@ namespace FileUploaderV2.Core.Models
         public string Name { get; set; }
 
         public ICollection<GroupAppUser> Groups { get; set; }
+        public ICollection<DataFile> DataFiles { get; set; }
 
     }
 }

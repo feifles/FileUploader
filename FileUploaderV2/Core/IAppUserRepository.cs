@@ -9,6 +9,7 @@ namespace FileUploaderV2.Core
     public interface IAppUserRepository
     {
         Task<List<AppUser>> Get();
+        Task<AppUser> Get(int id, bool includeRelated = true);
         Task<List<AppUser>> GetUsersFromCompanyAsync(int id);
     }
 }

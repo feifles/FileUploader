@@ -13,6 +13,7 @@ namespace FileUploaderV2.Mapping
         public MappingProfile()
         {
             //Domain to API Resource
+            CreateMap<DataFile, DataFileResource>();
             CreateMap(typeof(QueryResult<>), typeof(QueryResultResource<>));
             CreateMap<Company, KeyValuePairResource>();
             CreateMap<AppUser, KeyValuePairResource>();

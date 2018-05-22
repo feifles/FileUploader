@@ -14,6 +14,7 @@ namespace FileUploaderV2.Persistence
         public DbSet<Group> Groups { get; set; }
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<DBConfig> DBConfigs { get; set; }
+        public DbSet<DataFile> DataFiles { get; set; }
 
         public FileUploaderDbContext(DbContextOptions<FileUploaderDbContext> options) : base(options)
         {

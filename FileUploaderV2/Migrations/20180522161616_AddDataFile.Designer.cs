@@ -11,9 +11,10 @@ using System;
 namespace FileUploaderV2.Migrations
 {
     [DbContext(typeof(FileUploaderDbContext))]
-    partial class FileUploaderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180522161616_AddDataFile")]
+    partial class AddDataFile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
