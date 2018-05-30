@@ -2,7 +2,7 @@ import * as Raven from 'raven-js';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, BrowserXhr } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app/app.component';
@@ -21,6 +21,8 @@ import { AppErrorHandler } from './app.error-handler';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { PaginationComponent } from './components/shared/pagination.component';
 import { GroupViewComponent } from './components/group-view/group-view.component';
+import { DatafileService } from './services/datafile.service';
+import { BrowserXhrWithProgress, ProgressService } from './services/progress.service';
 
 Raven
     .config('https://77e4082301d64855806a4f6e64b8d6c6@sentry.io/1199957')
@@ -61,9 +63,12 @@ Raven
     ],
     providers: [
         { provide: ErrorHandler, useClass: AppErrorHandler },
+        { provide: BrowserXhr, useClass: BrowserXhrWithProgress},
         CompanyService,
         FeatureService,
-        GroupService
+        GroupService,
+        DatafileService,
+        ProgressService
     ]
 })
 export class AppModuleShared {

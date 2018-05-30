@@ -12,5 +12,7 @@ namespace FileUploaderV2.Core.Models
         [Required]
         [StringLength(255)]
         public string FileName { get; set; }
+
+        public int AppUserId { get; set; }
     }
 }

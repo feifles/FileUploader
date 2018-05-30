@@ -20,23 +20,34 @@ namespace FileUploaderV2.Controllers
     {
         private readonly DataFileSettings dataFileSettings;
         private readonly IHostingEnvironment host;
-        private readonly IAppUserRepository repository;
+        private readonly IDataFileRepository dataFileRepository;
+        private readonly IAppUserRepository appUserRepository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public DataFilesController(IHostingEnvironment host, IAppUserRepository repository, IUnitOfWork unitOfWork, IMapper mapper, IOptionsSnapshot<DataFileSettings> options)
+        public DataFilesController(IHostingEnvironment host, IAppUserRepository appUserRepository, IDataFileRepository dataFileRepository, IUnitOfWork unitOfWork, IMapper mapper, IOptionsSnapshot<DataFileSettings> options)
         {
             this.dataFileSettings = options.Value;
             this.host = host;
-            this.repository = repository;
+            this.dataFileRepository = dataFileRepository;
+            this.appUserRepository = appUserRepository;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
         }
 
+        [HttpGet]
+        public async Task<IEnumerable<DataFileResource>> GetDataFiles(int userId)
+        {
+            var dataFiles = await dataFileRepository.GetDataFiles(userId);
+
+            return mapper.Map<IEnumerable<DataFile>, IEnumerable<DataFileResource>>(dataFiles);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Upload(int userId, IFormFile file)
         {
-            var user = await repository.Get(userId, false);
+            var user = await appUserRepository.Get(userId, false);
             if (user == null)
                 return NotFound();
 

@@ -35,6 +35,7 @@ namespace FileUploaderV2
             services.Configure<DataFileSettings>(Configuration.GetSection("DataFileSettings"));
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IDataFileRepository, DataFileRepository>();
             services.AddScoped<IAppUserRepository, AppUserRepository>();
             services.AddScoped<IDBConfigRepository, DBConfigRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
