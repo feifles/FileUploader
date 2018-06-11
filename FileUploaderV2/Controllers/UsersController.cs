@@ -6,6 +6,7 @@ using AutoMapper;
 using FileUploaderV2.Controllers.Resources;
 using FileUploaderV2.Core;
 using FileUploaderV2.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
