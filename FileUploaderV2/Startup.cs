@@ -47,16 +47,16 @@ namespace FileUploaderV2
             services.AddMvc();
 
             // 1. Add Authentication Services
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            }).AddJwtBearer(options =>
-            {
-                options.Authority = "https://thincfileupload.auth0.com/";
-                options.Audience = "https://upload.thinc.com.br";
-            });
+            //}).AddJwtBearer(options =>
+            //{
+            //    options.Authority = "";
+            //    options.Audience = "";
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -78,7 +78,7 @@ namespace FileUploaderV2
             app.UseStaticFiles();
 
             // 2. Enable authentication middleware
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
