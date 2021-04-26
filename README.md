@@ -1,20 +1,36 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Introduction  
+This project was meant to be a (As the name suggests) a file uploader tool, which means users would be able to upload data files (Json, xml, csv,...) to insert the records onto the database. 
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Unfortunately, I got busy and was unable and unwilling to continue the project. But I think it's a good startup project all the same, so I decided to share it. 
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+I hope it helps someone, even though it's a bit old =P
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## Features
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+- Repository pattern
+- AutoMapper
+- Toasty Notifications
+- Sentry.io ready
+- Server-side sorting and filtering
+- Underscore (https://underscorejs.org/)
+
+## Built with
+
+- .Net core 2.0
+- Entity Framework Core 2.0
+- Angular 4.2.5
+- Bootstrap 3.3.7
+
+
+## Installation
+
+- Restore dependencies
+- Add connection string to appsettings.json
+- Update database
+```sh
+//.NET Core CLI
+dotnet ef database update
+
+//Visual Studio
+Update-Database
+```
