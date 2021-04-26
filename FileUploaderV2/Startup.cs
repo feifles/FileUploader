@@ -6,7 +6,6 @@ using AutoMapper;
 using FileUploaderV2.Core;
 using FileUploaderV2.Core.Models;
 using FileUploaderV2.Persistence;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -46,17 +45,7 @@ namespace FileUploaderV2
 
             services.AddMvc();
 
-            // 1. Add Authentication Services
-            //services.AddAuthentication(options =>
-            //{
-            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
-            //}).AddJwtBearer(options =>
-            //{
-            //    options.Authority = "";
-            //    options.Audience = "";
-            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,8 +66,6 @@ namespace FileUploaderV2
 
             app.UseStaticFiles();
 
-            // 2. Enable authentication middleware
-            //app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

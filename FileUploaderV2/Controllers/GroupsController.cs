@@ -9,7 +9,6 @@ using FileUploaderV2.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FileUploaderV2.Controllers
 {
@@ -28,7 +27,6 @@ namespace FileUploaderV2.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateGroup([FromBody] SaveGroupResource groupResource)
         {
@@ -60,7 +58,6 @@ namespace FileUploaderV2.Controllers
             return Ok(result);
         }
 
-        [Authorize]
         [HttpPut("{id}")] // /api/groups/1
         public async Task<IActionResult> UpdateGroup(int id, [FromBody] SaveGroupResource groupResource)
         {
@@ -86,7 +83,6 @@ namespace FileUploaderV2.Controllers
             return Ok(result);
         }
 
-        [Authorize]
         [HttpDelete("{id}")]
         public async  Task<IActionResult> DeleteGroup(int id)
         {

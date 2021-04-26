@@ -23,7 +23,6 @@ import { PaginationComponent } from './components/shared/pagination.component';
 import { GroupViewComponent } from './components/group-view/group-view.component';
 import { DatafileService } from './services/datafile.service';
 import { BrowserXhrWithProgress, ProgressService } from './services/progress.service';
-import { AuthService } from './services/auth.service';
 
 Raven
     .config('https://77e4082301d64855806a4f6e64b8d6c6@sentry.io/1199957')
@@ -69,8 +68,7 @@ Raven
         FeatureService,
         GroupService,
         DatafileService,
-        ProgressService,
-        AuthService
+        ProgressService
     ]
 })
 export class AppModuleShared {
